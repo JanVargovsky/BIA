@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.functionsComboBox = new System.Windows.Forms.ComboBox();
+            this.functionsCB = new System.Windows.Forms.ComboBox();
             this.renderContainer = new System.Windows.Forms.Panel();
+            this.colorMapCB = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // functionsComboBox
+            // functionsCB
             // 
-            this.functionsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.functionsComboBox.FormattingEnabled = true;
-            this.functionsComboBox.Location = new System.Drawing.Point(12, 12);
-            this.functionsComboBox.Name = "functionsComboBox";
-            this.functionsComboBox.Size = new System.Drawing.Size(200, 21);
-            this.functionsComboBox.TabIndex = 0;
+            this.functionsCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.functionsCB.FormattingEnabled = true;
+            this.functionsCB.Location = new System.Drawing.Point(12, 12);
+            this.functionsCB.Name = "functionsCB";
+            this.functionsCB.Size = new System.Drawing.Size(200, 21);
+            this.functionsCB.TabIndex = 0;
             // 
             // renderContainer
             // 
@@ -48,16 +49,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.renderContainer.Location = new System.Drawing.Point(12, 39);
             this.renderContainer.Name = "renderContainer";
-            this.renderContainer.Size = new System.Drawing.Size(760, 510);
+            this.renderContainer.Size = new System.Drawing.Size(984, 710);
             this.renderContainer.TabIndex = 1;
+            // 
+            // colorMapCB
+            // 
+            this.colorMapCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.colorMapCB.FormattingEnabled = true;
+            this.colorMapCB.Location = new System.Drawing.Point(218, 12);
+            this.colorMapCB.Name = "colorMapCB";
+            this.colorMapCB.Size = new System.Drawing.Size(200, 21);
+            this.colorMapCB.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1008, 761);
+            this.Controls.Add(this.colorMapCB);
             this.Controls.Add(this.renderContainer);
-            this.Controls.Add(this.functionsComboBox);
+            this.Controls.Add(this.functionsCB);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BIA Lesson 2";
@@ -67,8 +78,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox functionsComboBox;
+        private System.Windows.Forms.ComboBox functionsCB;
         private System.Windows.Forms.Panel renderContainer;
+        private System.Windows.Forms.ComboBox colorMapCB;
     }
 }
 

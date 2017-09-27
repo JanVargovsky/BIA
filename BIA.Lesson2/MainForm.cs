@@ -3,6 +3,7 @@ using ILNumerics.Drawing.Plotting;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BIA.Lesson2
@@ -34,15 +35,19 @@ namespace BIA.Lesson2
                 Scene = scene,
             });
 
-            functionsComboBox.SelectedValueChanged += FunctionsComboBox_SelectedValueChanged;
-            functionsComboBox.SelectedIndex = 0;
+            colorMapCB.Items.AddRange(Enum.GetValues(typeof(Colormaps)).Cast<object>().ToArray());
+            colorMapCB.SelectedItem = Colormaps.Jet;
+            colorMapCB.SelectedIndexChanged += FunctionsCB_SelectedValueChanged;
+
+            functionsCB.SelectedValueChanged += FunctionsCB_SelectedValueChanged;
+            functionsCB.SelectedIndex = 0;
         }
 
         void InitFunctions()
         {
             void RegisterFunction(string name, TestFunction func)
             {
-                functionsComboBox.Items.Add(name);
+                functionsCB.Items.Add(name);
                 functionsDictionary[name] = func;
             }
 
@@ -60,18 +65,18 @@ namespace BIA.Lesson2
             RegisterFunction("Bukin function N.6", new TestFunction(testFunctions.BukinFunctionN6, -15f, -5f, -3f, 3f));
         }
 
-        void FunctionsComboBox_SelectedValueChanged(object sender, EventArgs e)
+        void FunctionsCB_SelectedValueChanged(object sender, EventArgs e)
         {
-            var selectedFunctionValue = (string)functionsComboBox.SelectedItem;
+            var selectedFunctionValue = (string)functionsCB.SelectedItem;
             var testFunction = functionsDictionary[selectedFunctionValue];
 
             var surface = new ILSurface(testFunction.Function, 
-                xmin: testFunction.MinX, xmax: testFunction.MaxX, 
-                ymin: testFunction.MinY, ymax: testFunction.MaxY)
+                xmin: testFunction.MinX, xmax: testFunction.MaxX, xlen: 100,
+                ymin: testFunction.MinY, ymax: testFunction.MaxY, ylen: 100)
             {
                 Wireframe = { Color = Color.FromArgb(50, Color.LightGray) },
-                Colormap = Colormaps.Jet,
-            };
+                Colormap = (Colormaps)colorMapCB.SelectedItem,
+        };
 
             if (this.surface != null)
                 plotCube.Remove(this.surface);
