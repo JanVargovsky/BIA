@@ -11,9 +11,9 @@ namespace BIA.Lesson1
     {
         static void Main(string[] args)
         {
-            var results = new Dictionary<int, (long TotalTime, int TotalSolutions)>();
+            var results = new Dictionary<int, (long TotalTime, long TotalSolutions)>();
 
-            for (int i = 2; i <= 13; i++)
+            for (int i = 2; i <= 14; i++)
             {
                 Console.WriteLine($"Started {i}");
                 Stopwatch sw = Stopwatch.StartNew();
@@ -23,7 +23,7 @@ namespace BIA.Lesson1
 
                 var exceptFirst = allnodes.Skip(1).ToList();
                 var permutations = MoreEnumerable.Permutations(exceptFirst);
-                var count = permutations.Count();
+                var count = permutations.LongCount();
 
                 sw.Stop();
                 results[i] = (sw.ElapsedMilliseconds, count);
