@@ -1,4 +1,4 @@
-﻿namespace BIA.Lesson2
+﻿namespace BIA.Lesson3
 {
     partial class MainForm
     {

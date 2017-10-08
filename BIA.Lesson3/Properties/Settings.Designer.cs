@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BIA.Lesson2.Properties
+namespace BIA.Lesson3.Properties
 {
 
 

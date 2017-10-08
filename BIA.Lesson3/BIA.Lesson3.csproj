@@ -7,7 +7,7 @@
     <ProjectGuid>{5A27178D-01E1-4E68-9B6A-EC3BA1CB2C06}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>BIA.Lesson2</RootNamespace>
-    <AssemblyName>BIA.Lesson2</AssemblyName>
+    <AssemblyName>BIA.Lesson3</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
