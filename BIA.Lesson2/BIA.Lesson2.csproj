@@ -56,19 +56,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestFunctions\AckleyFunction.cs" />
-    <Compile Include="TestFunctions\BukinFunctionN6.cs" />
-    <Compile Include="TestFunctions\CrossInTrayFunction.cs" />
-    <Compile Include="TestFunctions\EasomFunction.cs" />
-    <Compile Include="TestFunctions\HolderTableFunction.cs" />
-    <Compile Include="TestFunctions\MatyasFunction.cs" />
-    <Compile Include="TestFunctions\McCormickfunction.cs" />
-    <Compile Include="TestFunctions\SchafferFunctionN2.cs" />
-    <Compile Include="TestFunctions\SchafferFunctionN4.cs" />
-    <Compile Include="TestFunctions\SphereFunction.cs" />
-    <Compile Include="TestFunctions\TestFunctionBase.cs" />
-    <Compile Include="TestFunctions\RastriginFunction.cs" />
-    <Compile Include="TestFunctions\ThreeHumpCamelFunction.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -90,6 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BIA.Shared\BIA.Shared.csproj">
+      <Project>{ee333097-2f4a-4b87-8c53-1fc9c3a059d3}</Project>
+      <Name>BIA.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

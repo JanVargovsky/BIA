@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BIA.Lesson2.TestFunctions
+namespace BIA.Shared.TestFunctions
 {
     public class HolderTableFunction : TestFunctionBase
     {

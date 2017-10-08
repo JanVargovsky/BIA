@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace BIA.Lesson2.TestFunctions
+namespace BIA.Shared.TestFunctions
 {
     public class RastriginFunction : TestFunctionBase
     {

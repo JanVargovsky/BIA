@@ -1,4 +1,4 @@
-﻿using BIA.Lesson3.TestFunctions;
+﻿using BIA.Shared.TestFunctions;
 using ILNumerics.Drawing;
 using ILNumerics.Drawing.Plotting;
 using System;
@@ -69,7 +69,7 @@ namespace BIA.Lesson3
             };
 
             if (this.surface != null)
-            { 
+            {
                 plotCube.Remove(this.surface);
                 this.surface.Dispose();
             }

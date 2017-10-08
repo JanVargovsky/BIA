@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BIA.Lesson3.TestFunctions
+namespace BIA.Shared.TestFunctions
 {
     public class Lesson3Function : TestFunctionBase
     {

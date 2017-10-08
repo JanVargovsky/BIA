@@ -1,4 +1,6 @@
-﻿namespace BIA.Lesson3.TestFunctions
+﻿using System;
+
+namespace BIA.Shared.TestFunctions
 {
     public abstract class TestFunctionBase
     {

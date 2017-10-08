@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BIA.Lesson2.TestFunctions
+namespace BIA.Shared.TestFunctions
 {
-    public class SchafferFunctionN4 : TestFunctionBase
+    public class SchafferFunctionN2 : TestFunctionBase
     {
-        public SchafferFunctionN4() : base(-100f, 100f)
+        public SchafferFunctionN2() : base(-100f, 100f)
         {
         }
 
@@ -13,8 +13,8 @@ namespace BIA.Lesson2.TestFunctions
             var x = values[0];
             var y = values[1];
 
-            var a = Math.Cos(Math.Sin(Math.Abs(x * x - y * y)));
-            var b = a * a - 0.5f;
+            var a = Math.Sin(x * x - y * y);
+            var b = a * a - 0.5;
             var c = Math.Pow(1 + 0.001 * (x * x + y * y), 2);
             return (float)(0.5 + b / c);
         }

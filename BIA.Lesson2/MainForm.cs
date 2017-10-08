@@ -1,4 +1,4 @@
-﻿using BIA.Lesson2.TestFunctions;
+﻿using BIA.Shared.TestFunctions;
 using ILNumerics.Drawing;
 using ILNumerics.Drawing.Plotting;
 using System;
