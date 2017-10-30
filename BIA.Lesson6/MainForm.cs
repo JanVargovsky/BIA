@@ -141,12 +141,17 @@ namespace BIA.Lesson6
             var populationGenerator = new PopulationGenerator((testFunction.MinX, testFunction.MaxX), (testFunction.MinY, testFunction.MaxY));
             population = populationGenerator.GenerateFirstPopulation(count).ToArray();
 
+            RefreshNewPopulation(testFunction);
+        }
+
+        private void RefreshNewPopulation(TestFunctionBase testFunction)
+        {
             var positions = ConvertPoints(population, testFunction);
             RemoveSurfaceIfExist(points);
             points = new ILPoints
             {
                 Positions = positions,
-                Color = Color.Black
+                Color = Color.Red
             };
             plotCube.Add(points);
             renderContainer.Refresh();
@@ -169,15 +174,7 @@ namespace BIA.Lesson6
 
             population = newPopulationWithLocalSearch;
 
-            var positions = ConvertPoints(population, testFunction);
-            RemoveSurfaceIfExist(points);
-            points = new ILPoints
-            {
-                Positions = positions,
-                Color = Color.Black
-            };
-            plotCube.Add(points);
-            renderContainer.Refresh();
+            RefreshNewPopulation(testFunction);
         }
 
         Task RunAutoNextGenerations()
