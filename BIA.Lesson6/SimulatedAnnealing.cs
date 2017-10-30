@@ -1,5 +1,8 @@
 ﻿using BIA.Shared.TestFunctions;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace BIA.Lesson6
 {
@@ -33,6 +36,7 @@ namespace BIA.Lesson6
             float t = T0;
             var x0 = input;
             int it = 0;
+            //var x0Points = new List<(float[] Point, float Fitness)>();
             do
             {
                 float[] x = GeneratePoint(x0);
@@ -49,7 +53,10 @@ namespace BIA.Lesson6
                     t *= Alpha;
                 }
                 it++;
+                //x0Points.Add((x0, function.Calculate(x0)));
             } while (t >= Tn);
+
+            //File.WriteAllLines("x1.csv", x0Points.Select(p => p.Fitness.ToString()));
 
             return x0;
         }
