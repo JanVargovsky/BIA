@@ -152,7 +152,7 @@
             this.Controls.Add(this.functionsCB);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BIA Lesson 5";
+            this.Text = "BIA Lesson 7";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

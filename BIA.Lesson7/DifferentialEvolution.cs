@@ -26,7 +26,9 @@ namespace BIA.Lesson7
                 // aktivni jedinec
                 var target = p;
                 // tri nahodne vybrani jedinci
-                var solutionVectors = new[] { input[random.Next(NP)], input[random.Next(NP)], input[random.Next(NP)] };
+                HashSet<int> indexes = new HashSet<int>();
+                while (indexes.Count < 3) indexes.Add(random.Next(NP));
+                var solutionVectors = indexes.Select(i => input[i]).ToArray();
 
                 // diferencni vahovy vektor
                 float[] v = Enumerable.Range(0, D)
