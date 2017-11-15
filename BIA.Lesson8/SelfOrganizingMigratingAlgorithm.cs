@@ -20,7 +20,7 @@ namespace BIA.Lesson8
             int D = input[0].Length;
             const float Step = 0.11f;
             const float PathLength = 3;
-            const float PRT = 0.1f;
+            const float PRT = 0.3f;
 
             // PRT - perturbacni vektor
             int[] GetPRTVector()
@@ -39,23 +39,23 @@ namespace BIA.Lesson8
             //for (int migration = 0; migration < migrations; migration++)
             {
                 var leader = input.MinBy(t => function.Calculate(t));
-                var prtVector = GetPRTVector();
 
                 foreach (var p in input)
                 {
                     float[] point = new float[D];
-                    float[] bestPoint = null;
+                    float[] bestPoint = p;
 
-                    for (float t = 0; t < PathLength; t += Step)
+                    for (float t = Step; t < PathLength; t += Step)
                     {
+                        var prtVector = GetPRTVector();
                         for (int i = 0; i < D; i++)
-                            point[i] = p[i] + (leader[i] - p[i]) * i * prtVector[i];
+                            point[i] = p[i] + (leader[i] - p[i]) * t * prtVector[i];
 
-                        if (bestPoint == null || function.Calculate(point) < function.Calculate(bestPoint))
-                            bestPoint = point;
+                        if (function.Calculate(point) < function.Calculate(bestPoint))
+                            point.CopyTo(bestPoint, 0);
                     }
 
-                    population.Add(point);
+                    population.Add(bestPoint);
                 }
             }
 
