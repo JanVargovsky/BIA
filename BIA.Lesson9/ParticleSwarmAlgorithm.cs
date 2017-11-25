@@ -15,71 +15,78 @@ namespace BIA.Lesson9
             random = new Random();
         }
 
-        class PointWithVelocity
+        class Particle
         {
             public float[] Point { get; set; }
-            public float Velocity { get; set; }
+            public float[] BestPoint { get; set; }
+            public float[] Velocity { get; set; }
         }
 
         public IEnumerable<float[]> GenerateNextPopulation(float[][] input, TestFunctionBase function, int iterations)
         {
             int D = input[0].Length;
-            var pBest = input.MinBy(t => function.Calculate(t));
             var gBest = input.MinBy(t => function.Calculate(t));
 
             const float VMAX = 1;
             const float C1 = 2;
             const float C2 = 2;
 
-            float CalculateV(float[] x, float v, int i)
+            float[] CalculateV(Particle point)
             {
-                var value = v + C1 * (float)random.NextDouble() * (pBest[i] - x[i]) +
+                float[] result = new float[D];
+                var x = point.Point;
+                var v = point.Velocity;
+                for (int i = 0; i < D; i++)
+                {
+                    var value = v[i] + C1 * (float)random.NextDouble() * (point.BestPoint[i] - x[i]) +
                     C2 * (float)random.NextDouble() * (gBest[i] - x[i]);
-
-                return Math.Min(value, VMAX);
-            }
-
-            float[] CalculateP(float[] p, float v)
-            {
-                float[] result = new float[p.Length];
-                for (int i = 0; i < result.Length; i++)
-                    result[i] = CalculateV(p, v, i);
+                    result[i] = Math.Min(value, VMAX);
+                }
                 return result;
             }
 
-            var oldParticles = input.Select(t => new PointWithVelocity
+            float[] CalculateP(float[] p, float[] v)
             {
-                Velocity = (float)random.NextDouble(),
-                Point = t
-            }).ToArray();
+                float[] result = new float[D];
+                for (int i = 0; i < D; i++)
+                    result[i] = p[i] + v[i];
+                return result;
+            }
 
-            var particles = input.Select(t => new PointWithVelocity
+            Particle Calculate(Particle old)
             {
-                Velocity = (float)random.NextDouble(),
-                Point = t
+                var p = new Particle();
+                p.Velocity = CalculateV(old);
+                p.Point = CalculateP(old.Point, p.Velocity);
+                p.BestPoint = old.BestPoint;
+                return p;
+            }
+
+            var particles = input.Select(t => new Particle
+            {
+                Velocity = Enumerable.Range(0, D).Select(_ => (float)random.NextDouble()).ToArray(),
+                Point = t,
+                BestPoint = t,
             }).ToArray();
 
             while (iterations-- > 0)
             {
-                for (int i = 0; i < oldParticles.Length; i++)
+                for (int i = 0; i < particles.Length; i++)
                 {
-                    var particle = CalculateP(oldParticles[i].Point, oldParticles[i].Velocity);
-                    
-                    if (function.Calculate(particle) < function.Calculate(pBest))
-                        pBest = particle;
-                    if (function.Calculate(pBest) < function.Calculate(gBest))
-                        gBest = pBest;
+                    var particle = particles[i] = Calculate(particles[i]);
 
-                    particles[i].Point = particle;
-                }
+                    if (function.Calculate(particle.Point) < function.Calculate(particles[i].BestPoint))
+                        particle.Point.CopyTo(particles[i].BestPoint, 0);
 
-                for (int i = 0; i < oldParticles.Length; i++)
-                {
-                    Array.Copy(particles[i].Point, oldParticles[i].Point, D);
+                    if (function.Calculate(particles[i].BestPoint) < function.Calculate(gBest))
+                        particle.BestPoint.CopyTo(gBest, 0);
+
+                    particles[i].Point = particle.Point;
+                    particles[i].Velocity = particle.Velocity;
                 }
             }
 
-            return particles.Select(t => t.Point);
+            return particles.Select(t => t.BestPoint);
         }
     }
 }
