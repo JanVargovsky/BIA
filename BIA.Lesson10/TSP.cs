@@ -74,7 +74,7 @@ namespace BIA.Lesson10
                 {
                     newPopulation[i] = new Tour(new City[cities.Length], -1);
 
-                    // krizeni
+                    // krizeni (1 cast)
                     int first = random.Next(cities.Length - 1);
                     int last = random.Next(first + 1, cities.Length - 1);
                     // a b c d  - aktualni
@@ -83,7 +83,7 @@ namespace BIA.Lesson10
                     for (int j = 0; j <= last - first; j++)
                         newPopulation[i].Cities[j] = population[i].Cities[j + first];
 
-                    // mutovani
+                    // kriyeni (2 cast)
                     // _ b c _ - aktualni
                     // d c b a - nahodne vybrany
                     // => mutace
@@ -95,6 +95,13 @@ namespace BIA.Lesson10
 
                     for (int j = last - first + 1, ri = 0; j < cities.Length; j++, ri++)
                         newPopulation[i].Cities[j] = remainingCities[ri];
+
+                    // mutace
+                    var mutationFirst = random.Next(cities.Length);
+                    var mutationLast = random.Next(cities.Length);
+                    var tmp = newPopulation[i].Cities[mutationFirst];
+                    newPopulation[i].Cities[mutationFirst] = newPopulation[i].Cities[mutationLast];
+                    newPopulation[i].Cities[mutationLast] = tmp;
 
                     newPopulation[i].Distance = CalculateFittness(newPopulation[i].Cities);
 
